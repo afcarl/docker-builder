@@ -8,4 +8,4 @@ ADD installer /
 ADD builder /
 ADD init-docker /
 RUN chmod +x /builder /installer /init-docker
-CMD ["init-docker"]
+CMD ["/init-docker"]
