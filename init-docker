@@ -88,6 +88,8 @@ rm -rf /var/run/docker.pid
 if [ "$PORT" ]
 then
 	exec docker.io -d -H 0.0.0.0:$PORT &
+	exec /builder
+	exec /installer
 else
 	if [ "$LOG" == "file" ]
 	then
@@ -95,7 +97,8 @@ else
 	else
 		docker.io -d &
 	fi
-	exec bash
-fi
 	exec /builder
 	exec /installer
+	exec bash
+fi
+
