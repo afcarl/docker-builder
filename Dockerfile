@@ -8,4 +8,4 @@ ADD installer /
 ADD builder /
 ADD run.sh /
 chmod +x /run.sh /builder /installer /init-docker
-CMD ["run.sh"]
+CMD ["init-docker"]
