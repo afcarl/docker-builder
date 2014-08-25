@@ -6,6 +6,6 @@ RUN apt-get update && apt-get install -y -q \
  && git clone https://github.com/docker/docker.git
 ADD installer /
 ADD builder /
-ADD run /
+ADD run.sh /
 chmod +x /run.sh /builder /installer /init-docker
 CMD ["run.sh"]
