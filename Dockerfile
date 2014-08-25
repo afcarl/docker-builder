@@ -1,4 +1,6 @@
 FROM ubuntu:trusty
+MAINTAINER Frank Lemanschik
+docker-version	0.6.1
 ENV VERSION nightly
 # Install git and Make
 RUN apt-get update && apt-get install -y -q \
