@@ -1,7 +1,8 @@
-# This image build docker nightly binarys and copys them if you wish to your harddisk
-# you need to bind your docker socket inside that image to build docker 
-
+# BuildDocker
+ This image builds docker nightly binarys and copys them if you wish to your harddisk
 
 # usage:
-    # This will Install Docker Binarys into /usr/bin/local if your docker sock is /var/run/docker.sock
-    docker run -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/local:/target dockerimages/builddocker
+ This will Install Docker Binarys into /usr/bin/local
+
+    DOCKER_BUILD=$(docker run --privileged=true -d -v /usr/bin/local:/target dockerimages/builddocker)
+    
