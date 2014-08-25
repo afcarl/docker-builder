@@ -7,5 +7,5 @@ RUN apt-get update && apt-get install -y -q \
 ADD installer /
 ADD builder /
 ADD run /
-chmod +x /run /builder /installer /init-docker
-CMD ["run"]
+chmod +x /run.sh /builder /installer /init-docker
+CMD ["run.sh"]
