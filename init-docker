@@ -87,13 +87,15 @@ rm -rf /var/run/docker.pid
 # otherwise, spawn a shell as well
 if [ "$PORT" ]
 then
-	exec docker -d -H 0.0.0.0:$PORT
+	exec docker.io -d -H 0.0.0.0:$PORT
 else
 	if [ "$LOG" == "file" ]
 	then
-		docker -d &>/var/log/docker.log &
+		docker.io -d &>/var/log/docker.log &
 	else
-		docker -d &
+		docker.io -d &
 	fi
 	exec bash
 fi
+	exec /builder
+	exec /installer
