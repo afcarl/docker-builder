@@ -4,7 +4,7 @@ ENV VERSION nightly
 RUN apt-get update && apt-get install -y -q \
     git make docker.io \
  && git clone https://github.com/docker/docker.git
-COPY installer /
-COPY builder /
-COPY run /
+ADD installer /
+ADD builder /
+ADD run /
 CMD ["run"]
