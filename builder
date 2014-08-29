@@ -5,4 +5,5 @@ echo "Ok building docker"
 #docker.io build -t docker .
 #docker.io run --name nightly-build --privileged docker hack/make.sh binary cross
 cd /go/src/github.com/docker/docker && git pull origin
-exec /go/src/github.com/docker/docker/hack/make.sh binary
+sed -i 's/^DOCKER_RUN_DOCKER :=.*/DOCKER_RUN_DOCKER :=/' /go/src/github.com/docker/docker/Makefile
+make binary
