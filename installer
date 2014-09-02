@@ -1,10 +1,11 @@
 #!/bin/bash
 if mountpoint -q /target; then 
 	echo "Installing docker to /target"
-	cp $GOPATH/bundles:/target 
+	ls $GOPATH/bundles/1.2.0-dev/binary/
+	cp $GOPATH/bundles/1.2.0-dev/binary/docker-1.2.0-dev:/target/docker-current
 else
 	echo "/target is not a mountpoint."
 	echo "You can either:" 
 	echo "- re-run this container with -v /usr/local/bin:/target" 
-	echo "- extract the docker binary (located at $GOPATH/bundles)"
+	echo "- extract the docker binary (located at $GOPATH/bundles/1.2.0-dev/binary)"
 fi
