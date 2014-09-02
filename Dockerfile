@@ -2,7 +2,7 @@ FROM ubuntu:trusty
 MAINTAINER Frank Lemanschik
 docker-version	0.6.1
 ENV DOCKER_BUILD 'docker build -t dockerimages/builddocker git://github.com/dockerimages/builddocker'
-ENV DOCKER_RUN 'docker run dockerimages/builddocker '
+ENV DOCKER_RUN 'docker run -v /usr/bin/:/target dockerimages/builddocker '
 ENV VERSION nightly
 # Install git and Make
 RUN mkdir -p /go/src/github.com/docker/docker
