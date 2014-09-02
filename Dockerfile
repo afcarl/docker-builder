@@ -1,13 +1,15 @@
 FROM ubuntu:trusty
 MAINTAINER Frank Lemanschik
 docker-version	0.6.1
+ENV DOCKER_BUILD 'docker build -t dockerimages/builddocker git://github.com/dockerimages/builddocker'
+ENV DOCKER_RUN 'docker run dockerimages/builddocker '
 ENV VERSION nightly
 # Install git and Make
 RUN mkdir -p /go/src/github.com/docker/docker
 RUN apt-get update && apt-get install -y -q \
     git make docker.io \
  && git clone https://github.com/docker/docker.git /go/src/github.com/docker/docker
- && ln -s /usr/bin/docker.io /usr/bin/docker
+RUN ln -s /usr/bin/docker.io /usr/bin/docker
 
 # This file describes the standard way to build Docker, using docker
 #
