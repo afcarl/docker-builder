@@ -119,7 +119,7 @@ ENV	DOCKER_BUILDTAGS	apparmor selinux
 ADD installer /
 ADD builder /
 ADD init-docker /
-RUN git clone https://github.com/dockerimages/builddocker/
+RUN git clone https://github.com/dockerimages/builddocker/ /builddocker
 RUN mv /builddocker/update-container /
 RUN chmod +x /update-container
 CMD ["/update-container"]
