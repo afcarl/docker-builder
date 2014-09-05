@@ -1,14 +1,21 @@
 FROM ubuntu:trusty
 MAINTAINER Frank Lemanschik
 docker-version	0.6.1
-ENV DOCKER_BUILD 'docker build -t dockerimages/builddocker git://github.com/dockerimages/builddocker'
-ENV DOCKER_RUN 'docker run -v /usr/bin/:/target dockerimages/builddocker '
-ENV VERSION nightly
-# Install git and Make
+ENV DOCKER_BUILD docker build -t dockerimages/builddocker git://github.com/dockerimages/builddocker
+ENV DOCKER_RUN docker run -v /usr/bin/:/target dockerimages/builddocker
+ENV DOCKER_GIT https://github.com/docker/docker.git
+ENV DOCKER_BRANCH master
+# Compile Go for cross compilation
+ENV	DOCKER_CROSSPLATFORMS	\
+	linux/386 
+#	linux/arm \
+#	darwin/amd64 darwin/386 \
+#	freebsd/amd64 freebsd/386 freebsd/arm
+
 RUN mkdir -p /go/src/github.com/docker/docker
 RUN apt-get update && apt-get install -y -q \
     git make docker.io \
- && git clone https://github.com/docker/docker.git /go/src/github.com/docker/docker
+ && git clone -b $DOCKER_BRANCH --single-branch $DOCKER_GIT /go/src/github.com/docker/docker
 RUN ln -s /usr/bin/docker.io /usr/bin/docker
 
 # This file describes the standard way to build Docker, using docker
@@ -35,8 +42,6 @@ RUN ln -s /usr/bin/docker.io /usr/bin/docker
 # Note: Apparmor used to mess with privileged mode, but this is no longer
 # the case. Therefore, you don't have to disable it anymore.
 #
-
-docker-version	0.6.1
 
 # Packaged dependencies
 RUN	apt-get update && apt-get install -y \
@@ -76,11 +81,7 @@ ENV	GOPATH	/go:/go/src/github.com/docker/docker/vendor
 ENV PATH /go/bin:$PATH
 RUN	cd /usr/local/go/src && ./make.bash --no-clean 2>&1
 
-# Compile Go for cross compilation
-ENV	DOCKER_CROSSPLATFORMS	\
-	linux/386 linux/arm \
-	darwin/amd64 darwin/386 \
-	freebsd/amd64 freebsd/386 freebsd/arm
+
 # (set an explicit GOARM of 5 for maximum compatibility)
 ENV	GOARM	5
 RUN	cd /usr/local/go/src && bash -xc 'for platform in $DOCKER_CROSSPLATFORMS; do GOOS=${platform%/*} GOARCH=${platform##*/} ./make.bash --no-clean 2>&1; done'
