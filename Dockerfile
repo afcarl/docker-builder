@@ -16,7 +16,7 @@ RUN mkdir -p /go/src/github.com/docker/docker
 RUN apt-get update && apt-get install -y -q \
     git make docker.io \
  && git clone -b $DOCKER_BRANCH --single-branch $DOCKER_GIT /go/src/github.com/docker/docker
-RUN ln -s /usr/bin/docker.io /usr/bin/docker
+#RUN ln -s /usr/bin/docker.io /usr/bin/docker
 
 # This file describes the standard way to build Docker, using docker
 #
