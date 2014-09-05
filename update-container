@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /builddocker
+git fetch origin && git reset --hard origin/master
+chmod +x *
+mv * ../
