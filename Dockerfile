@@ -1,6 +1,6 @@
-FROM ubuntu:trusty
+FROM dockerimages/ubuntu-core:14.04
 MAINTAINER Frank Lemanschik
-docker-version	0.6.1
+
 ENV DOCKER_BUILD docker build -t dockerimages/builddocker git://github.com/dockerimages/builddocker
 ENV DOCKER_RUN docker run --rm -v /usr/bin/:/target dockerimages/builddocker
 ENV DOCKER_GIT https://github.com/docker/docker.git
