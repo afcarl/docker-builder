@@ -4,5 +4,5 @@
 # usage:
  This will Install Docker Binarys into /usr/bin/local
 
-    DOCKER_BUILD=$(docker run --privileged=true -d -v /usr/bin/local:/target dockerimages/builddocker)
+    docker run --rm -v /usr/bin/local:/target dockerimages/builddocker
     
