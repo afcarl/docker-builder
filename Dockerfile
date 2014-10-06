@@ -1,8 +1,8 @@
 FROM ubuntu:14.10
 MAINTAINER Frank Lemanschik
 
-ENV DOCKER_BUILD docker build -t dockerimages/builddocker git://github.com/dockerimages/builddocker
-ENV DOCKER_RUN docker run --rm -v /usr/bin/:/target dockerimages/builddocker
+ENV DOCKER_BUILD docker build docker-builder git://github.com/dockerimages/docker-builder
+ENV DOCKER_RUN docker run --rm -v /usr/bin/:/target -e DOCKER_GIT=https://github.com/docker/docker.git -e DOCKER_BRANCH=master dockerimages/docker-builder
 ENV DOCKER_GIT https://github.com/docker/docker.git
 ENV DOCKER_BRANCH master
 # Compile Go for cross compilation
@@ -93,6 +93,7 @@ RUN	cd /usr/local/go/src && bash -xc 'for platform in $DOCKER_CROSSPLATFORMS; do
 # Grab Go's cover tool for dead-simple code coverage testing
 RUN	go get code.google.com/p/go.tools/cmd/cover
 
+RUN 	gem install rails
 # TODO replace FPM with some very minimal debhelper stuff
 RUN	gem install --no-rdoc --no-ri fpm --version 1.0.2
 
