@@ -1,4 +1,4 @@
-FROM dockerimages/ubuntu-core:14.04
+FROM ubuntu:14.10
 MAINTAINER Frank Lemanschik
 
 ENV DOCKER_BUILD docker build -t dockerimages/builddocker git://github.com/dockerimages/builddocker
