@@ -1,6 +1,9 @@
 #!/bin/bash
 cd /builddocker
-git fetch origin && git reset --hard origin/master
+cd /go/src/github.com/docker/docker
+git remote remove origin
+git remote add origin $DOCKER_GIT
+git fetch origin && git reset --hard origin/$DOCKER_BRANCH
 chmod +x *
-mv * ../
+# mv * ../
 /run.sh
