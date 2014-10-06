@@ -13,6 +13,10 @@ ENV	DOCKER_CROSSPLATFORMS	\
 #	freebsd/amd64 freebsd/386 freebsd/arm
 
 RUN mkdir -p /go/src/github.com/docker/docker
+RUN echo "deb mirror://mirrors.ubuntu.com/mirrors.txt utopic main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt utopic-updates main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt utopic-backports main restricted universe multiverse \n\
+deb mirror://mirrors.ubuntu.com/mirrors.txt utopic-security main restricted universe multiverse" > /etc/apt/sources.list.d/all-mirrors.list
 RUN apt-get update && apt-get install -y -q \
     git make docker.io \
  && git clone -b $DOCKER_BRANCH --single-branch $DOCKER_GIT /go/src/github.com/docker/docker
