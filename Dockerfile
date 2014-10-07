@@ -2,7 +2,7 @@ FROM ubuntu:14.10
 MAINTAINER Frank Lemanschik
 
 ENV DOCKER_BUILD docker build docker-builder git://github.com/dockerimages/docker-builder
-ENV DOCKER_RUN docker run --rm -v /usr/bin/:/target -e DOCKER_GIT=https://github.com/docker/docker.git -e DOCKER_BRANCH=master dockerimages/docker-builder
+ENV DOCKER_RUN docker run --rm -v /usr/bin/:/target -e DOCKER_GIT=https://github.com/crosbymichael/docker.git -e DOCKER_BRANCH=bump_v1.3.0 dockerimages/docker-builder
 ENV DOCKER_GIT https://github.com/docker/docker.git
 ENV DOCKER_BRANCH master
 # Compile Go for cross compilation
